@@ -11,7 +11,7 @@ const Container = styled.div`
 `;
 
 const Progressbar = styled.div`
-  width: 70%;
+  width: 80%;
   height: 20px;
   background-color: white;
   border-radius: 10px;
@@ -25,8 +25,16 @@ const Progress = styled.div`
 `;
 
 const Question = styled.h1`
-  font-size: 40px;
+  font-size: 3rem;
   color: white;
+  padding: 0 3rem;
+`;
+
+const BtnList = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 3rem;
+  gap: 5rem;
 `;
 function Choice() {
   return (
@@ -35,8 +43,10 @@ function Choice() {
         <Progress />
       </Progressbar>
       <Question>파티에 입장할 때 나의 모습은?</Question>
-      <button>내가 주인공인 것 처럼 입장한다.</button>
-      <button>조용히 들어간다.</button>
+      <BtnList>
+        <button>내가 주인공인 것 처럼 입장한다.</button>
+        <button>조용히 들어간다.</button>
+      </BtnList>
     </Container>
   );
 }

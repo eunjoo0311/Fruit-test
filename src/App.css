@@ -8,12 +8,15 @@
 
 :root {
   font-family: "omyu_pretty";
-  background-color: #637ac0;
+  /* background-color: #637ac0;
+   */
+  background-color: #333738;
 }
 
 button {
   font-family: "omyu_pretty";
   font-size: 30px;
+  font-size: 2em;
   font-weight: 600;
   cursor: pointer;
   padding: 12px 50px;
