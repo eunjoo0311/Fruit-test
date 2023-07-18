@@ -11,12 +11,24 @@ const Container = styled.div`
 const Title = styled.h1`
   margin: 216px auto auto 106px;
   color: #fff;
-  font-size: 60px;
+  font-size: 4rem;
   font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+    margin: 100px auto auto 30px;
+    word-break: keep-all;
+  }
 `;
 
 const StartBtn = styled.button`
   margin: 51px auto auto 106px;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin: 30px auto auto 30px;
+    word-break: keep-all;
+  }
 `;
 
 const Img = styled.img`
@@ -40,18 +52,13 @@ const Img = styled.img`
       position &&
       `
       left: ${position.left}px;
-      top: ${position.top + 200}px;
       right: ${position.right}px;
     `}
   }
+
   @media (max-width: 768px) {
-    ${({ position }) =>
-      position &&
-      `
-      left: ${position.left}px;
-      top: ${position.top + 400}px;
-      right: ${position.right}px;
-    `}
+    width: 70%;
+    ${({ src }) => src !== blue && `display: none;`}
   }
 `;
 

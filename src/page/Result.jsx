@@ -6,26 +6,45 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  height: 100vh;
+  margin: 0 2rem;
 `;
 
 const Title = styled.h1`
   color: white;
-  font-size: 96px;
+  font-size: 5rem;
+  word-break: keep-all;
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
 `;
 
 const RetryBtn = styled.button`
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
 `;
 const Img = styled.img`
   background-color: #637ac0;
-  width: 40%;
+  width: 30%;
+
+  @media (max-width: 768px) {
+    width: 70%;
+  }
 `;
 
 const ResultTxt = styled.p`
   background-color: rgba(141, 160, 218, 0.76);
   font-size: 2.5rem;
   padding: 1rem;
-  margin: 0 5rem;
+  word-break: keep-all;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 function Result() {
   return (

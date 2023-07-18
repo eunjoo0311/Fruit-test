@@ -3,6 +3,6 @@ import Choice from "./page/Choice.";
 import Main from "./page/Main";
 import Result from "./page/Result";
 function App() {
-  return <Result />;
+  return <Main />;
 }
 export default App;
