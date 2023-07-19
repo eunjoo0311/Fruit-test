@@ -4,6 +4,7 @@ import blue from "../assets/blueberry_circle.svg";
 import lemon from "../assets/lemon_circle.svg";
 import melon from "../assets/melon_circle.svg";
 import straw from "../assets/strawberry_circle.svg";
+import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   position: relative;
 `;
@@ -62,11 +63,15 @@ const Img = styled.img`
   }
 `;
 
-function Main() {
+export default function Main() {
+  const navigate = useNavigate();
+  function goChoice() {
+    navigate("/choice");
+  }
   return (
     <Container>
       <Title>과일로 보는 내 성격은?</Title>
-      <StartBtn>&#62; 시작</StartBtn>
+      <StartBtn onClick={goChoice}>&#62; 시작</StartBtn>
       <Img src={blue} position={{ left: 63, top: 223 }} />
       <Img src={lemon} position={{ left: 495, top: 121 }} />
       <Img src={melon} position={{ right: 258, top: 345 }} />
@@ -74,4 +79,3 @@ function Main() {
     </Container>
   );
 }
-export default Main;

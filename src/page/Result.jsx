@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import Apple from "../assets/apple.svg";
+import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -47,10 +48,14 @@ const ResultTxt = styled.p`
   }
 `;
 function Result() {
+  const navigate = useNavigate();
+  function goMain() {
+    navigate("/");
+  }
   return (
     <Container>
       <Title>나는야 멋쟁이 사과</Title>
-      <RetryBtn>&#62; 다시하기</RetryBtn>
+      <RetryBtn onClick={goMain}>&#62; 다시하기</RetryBtn>
       <Img src={Apple} />
       <ResultTxt>
         사과는 단 맛과 신 맛의 균형이 잘 맞으며, ISTJ의 신중한 성향과 함께
