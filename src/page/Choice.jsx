@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import ChoiceList from "../data/ChoiceList";
+import choiceList from "../data/ChoiceList";
+
 const Container = styled.div`
   display: flex;
   height: 100vh;
@@ -43,16 +44,31 @@ const BtnList = styled.div`
     font-size: 0.8rem;
   }
 `;
+
 function Choice() {
+  const [present, setPresent] = useState(0); // 인덱스를 0으로 시작
+
+  const navigate = useNavigate();
+
+  function goNextQuestion() {
+    if (present + 1 < choiceList.length) {
+      setPresent(present + 1);
+    } else {
+      navigate("/result");
+    }
+  }
+
+  const currentQuestion = choiceList[present];
+
   return (
     <Container>
       <Progressbar>
         <Progress />
       </Progressbar>
-      <Question>파티에 입장할 때 나의 모습은?</Question>
+      <Question>{currentQuestion.question}</Question>
       <BtnList>
-        <button>내가 주인공인 것 처럼 입장한다.</button>
-        <button>조용히 들어간다.</button>
+        <button onClick={goNextQuestion}>{currentQuestion.firstAnswer}</button>
+        <button onClick={goNextQuestion}>{currentQuestion.secondAnswer}</button>
       </BtnList>
     </Container>
   );

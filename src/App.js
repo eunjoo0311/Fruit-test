@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Choice from "./page/Choice.";
+import Choice from "./page/Choice";
 import Main from "./page/Main";
 import Result from "./page/Result";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
