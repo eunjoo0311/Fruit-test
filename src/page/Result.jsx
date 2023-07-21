@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import Apple from "../assets/apple.svg";
 import { useNavigate } from "react-router-dom";
+import ResultList from "../data/ResultList";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,10 +21,15 @@ const Title = styled.h1`
     font-size: 3rem;
   }
 `;
-
+const Comment = styled.h2`
+  color: #cdcdcd;
+  font-size: 2.5rem;
+  word-break: keep-all;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+`;
 const RetryBtn = styled.button`
-  margin-top: 2rem;
-
   @media (max-width: 768px) {
     font-size: 1.3rem;
   }
@@ -48,19 +54,22 @@ const ResultTxt = styled.p`
   }
 `;
 function Result() {
+  const [preResult, setPreResult] = useState(1);
   const navigate = useNavigate();
   function goMain() {
     navigate("/");
   }
+
+  function analyze() {}
+
+  const currentResult = ResultList[preResult];
   return (
     <Container>
-      <Title>나는야 멋쟁이 사과</Title>
+      <Title>{currentResult.title}</Title>
+      <Comment>"{currentResult.comment}"</Comment>
       <RetryBtn onClick={goMain}>&#62; 다시하기</RetryBtn>
-      <Img src={Apple} />
-      <ResultTxt>
-        사과는 단 맛과 신 맛의 균형이 잘 맞으며, ISTJ의 신중한 성향과 함께
-        안정성과 신뢰성을 상징할 수 있습니다.
-      </ResultTxt>
+      <Img src={currentResult.img} />
+      <ResultTxt>{currentResult.resultTxt}</ResultTxt>
     </Container>
   );
 }

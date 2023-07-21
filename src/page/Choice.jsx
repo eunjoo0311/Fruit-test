@@ -21,7 +21,7 @@ const Progressbar = styled.div`
 
 const Progress = styled.div`
   background-color: #4fc672;
-  width: 50%;
+  width: ${(props) => (100 / 12) * (props.progress + 1)}%;
   height: 100%;
   border-radius: 10px;
 `;
@@ -46,13 +46,14 @@ const BtnList = styled.div`
 `;
 
 function Choice() {
-  const [present, setPresent] = useState(0); // 인덱스를 0으로 시작
-
+  const [present, setPresent] = useState(0);
+  const [preProgress, setPreProgress] = useState(0);
   const navigate = useNavigate();
 
   function goNextQuestion() {
     if (present + 1 < choiceList.length) {
       setPresent(present + 1);
+      setPreProgress(preProgress + 1);
     } else {
       navigate("/result");
     }
@@ -63,7 +64,7 @@ function Choice() {
   return (
     <Container>
       <Progressbar>
-        <Progress />
+        <Progress progress={preProgress} />
       </Progressbar>
       <Question>{currentQuestion.question}</Question>
       <BtnList>
