@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-import Apple from "../assets/apple.svg";
 import { useNavigate } from "react-router-dom";
 import ResultList from "../data/ResultList";
 const Container = styled.div`
@@ -26,7 +25,7 @@ const Comment = styled.h2`
   font-size: 2.5rem;
   word-break: keep-all;
   @media (max-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 `;
 const RetryBtn = styled.button`
@@ -36,7 +35,7 @@ const RetryBtn = styled.button`
 `;
 const Img = styled.img`
   background-color: #637ac0;
-  width: 30%;
+  width: 25%;
 
   @media (max-width: 768px) {
     width: 70%;
@@ -45,16 +44,16 @@ const Img = styled.img`
 
 const ResultTxt = styled.p`
   background-color: rgba(141, 160, 218, 0.76);
-  font-size: 2.5rem;
+  font-size: 2rem;
   padding: 1rem;
   word-break: keep-all;
-
+  white-space: pre-line;
   @media (max-width: 768px) {
     font-size: 1.5rem;
   }
 `;
 function Result() {
-  const [preResult, setPreResult] = useState(1);
+  const [preResult, setPreResult] = useState(15);
   const navigate = useNavigate();
   function goMain() {
     navigate("/");
@@ -66,7 +65,7 @@ function Result() {
   return (
     <Container>
       <Title>{currentResult.title}</Title>
-      <Comment>"{currentResult.comment}"</Comment>
+      <Comment>" {currentResult.comment} "</Comment>
       <RetryBtn onClick={goMain}>&#62; 다시하기</RetryBtn>
       <Img src={currentResult.img} />
       <ResultTxt>{currentResult.resultTxt}</ResultTxt>
