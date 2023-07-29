@@ -48,14 +48,32 @@ const BtnList = styled.div`
 function Choice() {
   const [present, setPresent] = useState(0);
   const [preProgress, setPreProgress] = useState(0);
+  const [scores, setScores] = useState({
+    E: 0,
+    I: 0,
+    S: 0,
+    N: 0,
+    T: 0,
+    F: 0,
+    P: 0,
+    J: 0,
+  });
+
   const navigate = useNavigate();
 
-  function goNextQuestion() {
+  function goNextQuestion(type) {
     if (present + 1 < choiceList.length) {
+      // Update the score based on the selected type (E or I)
+      setScores((prevScores) => ({
+        ...prevScores,
+        [type]: prevScores[type] + 1,
+      }));
+
       setPresent(present + 1);
       setPreProgress(preProgress + 1);
     } else {
-      navigate("/result");
+      // Pass the scores to the Result component via react-router's navigate state
+      navigate("/result", { state: scores });
     }
   }
 
