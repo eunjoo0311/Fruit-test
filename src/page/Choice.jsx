@@ -48,32 +48,53 @@ const BtnList = styled.div`
 function Choice() {
   const [present, setPresent] = useState(0);
   const [preProgress, setPreProgress] = useState(0);
-  const [scores, setScores] = useState({
-    E: 0,
-    I: 0,
-    S: 0,
-    N: 0,
-    T: 0,
-    F: 0,
-    P: 0,
-    J: 0,
-  });
+  const [resultType, setResultType] = useState("");
+  const [score, setScore] = useState({ EI: 0, SN: 0, TF: 0, PJ: 0 });
 
   const navigate = useNavigate();
 
-  function goNextQuestion(type) {
-    if (present + 1 < choiceList.length) {
-      // Update the score based on the selected type (E or I)
-      setScores((prevScores) => ({
-        ...prevScores,
-        [type]: prevScores[type] + 1,
+  function goNextQuestion(selectedAnswerType) {
+    const currentQuestion = choiceList[present];
+    if (selectedAnswerType === "first") {
+      setScore((prevScore) => ({
+        ...prevScore,
+        [currentQuestion.type]: prevScore[currentQuestion.type] + 1,
       }));
+    }
 
+    if (present + 1 < choiceList.length) {
       setPresent(present + 1);
       setPreProgress(preProgress + 1);
     } else {
-      // Pass the scores to the Result component via react-router's navigate state
-      navigate("/result", { state: scores });
+      let resultType = "";
+
+      if (score.EI >= 2) {
+        resultType += "e";
+      } else {
+        resultType += "i";
+      }
+
+      if (score.SN >= 2) {
+        resultType += "s";
+      } else {
+        resultType += "n";
+      }
+
+      if (score.TF >= 2) {
+        resultType += "f";
+      } else {
+        resultType += "t";
+      }
+
+      if (score.PJ >= 2) {
+        resultType += "j";
+      } else {
+        resultType += "p";
+      }
+
+      setResultType(resultType);
+      navigate("/result", { state: { resultType } });
+      console.log(resultType);
     }
   }
 
@@ -86,8 +107,12 @@ function Choice() {
       </Progressbar>
       <Question>{currentQuestion.question}</Question>
       <BtnList>
-        <button onClick={goNextQuestion}>{currentQuestion.firstAnswer}</button>
-        <button onClick={goNextQuestion}>{currentQuestion.secondAnswer}</button>
+        <button onClick={() => goNextQuestion("first")}>
+          {currentQuestion.firstAnswer}
+        </button>
+        <button onClick={() => goNextQuestion("second")}>
+          {currentQuestion.secondAnswer}
+        </button>
       </BtnList>
     </Container>
   );

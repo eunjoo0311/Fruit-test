@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ResultList from "../data/ResultList";
 const Container = styled.div`
   display: flex;
@@ -53,15 +53,21 @@ const ResultTxt = styled.p`
   }
 `;
 function Result() {
-  const [preResult, setPreResult] = useState(15);
   const navigate = useNavigate();
+  const location = useLocation();
+  const resultType = location.state && location.state.resultType;
+
   function goMain() {
     navigate("/");
   }
 
-  function analyze() {}
+  const currentResult = ResultList.find((result) => result.id === resultType);
+  if (!currentResult) {
+    console.log("잘못된 경로입니다.");
+    navigate("/");
+    return null;
+  }
 
-  const currentResult = ResultList[preResult];
   return (
     <Container>
       <Title>{currentResult.title}</Title>
