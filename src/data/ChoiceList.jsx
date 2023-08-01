@@ -17,14 +17,14 @@ const choiceList = [
     id: 3,
     question: "가고 싶었던 여행지에 도착했다. 나는 어떤 숙소에 묵을까?",
     firstAnswer: "사람이 많이 있는 게스트하우스",
-    secondAnswer: "혼자만의 시간을 보낼 수 있는 에어비엔비",
+    secondAnswer: "혼자만의 시간을 보낼 수 있는 호텔",
     type: "EI",
   },
   {
     id: 4,
     question: "한적한 저녁, 버스를 기다리는 중이다. 나는 무슨 생각을 할까?",
     firstAnswer: "오늘 뭐먹지?",
-    secondAnswer: "이 버스를 놓친다면 나는 ...",
+    secondAnswer: "좀비 세상이 온다면 ... ",
     type: "SN",
   },
   {
